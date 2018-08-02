@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.TipoActivo" table="TIPO_ACTIVO" schema="ACTIVOS" optimistic-lock="version">
+        <composite-id name="id" class="com.domain.sysassets.TipoActivoId">
+            <key-property name="categoria" type="string">
+                <column name="CATEGORIA" length="15" />
+            </key-property>
+            <key-property name="tipActivo" type="string">
+                <column name="TIP_ACTIVO" length="15" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="categoriaActivo" class="com.domain.sysassets.CategoriaActivo" update="false" insert="false" fetch="select">
+            <column name="CATEGORIA" length="15" not-null="true" />
+        </many-to-one>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="100" />
+        </property>
+        <property name="codigoPresup" type="string">
+            <column name="CODIGO_PRESUP" length="20" />
+        </property>
+        <property name="vidaUtil" type="java.lang.Short">
+            <column name="VIDA_UTIL" precision="3" scale="0" />
+        </property>
+    </class>
+</hibernate-mapping>

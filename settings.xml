@@ -1,0 +1,54 @@
+<settings>
+  <proxies>
+    <proxy>
+      <active>true</active>
+      <protocol>http</protocol>
+      <host>proxy.mycompany.com</host>
+      <nonProxyHosts>mycompany.com</nonProxyHosts>
+   </proxy>
+  </proxies>
+
+<servers>
+  <server>
+    <id>maven.oracle.com </id>
+    <username>addielo.oamvi@gmail.com</username>
+    <password>{lBM5pnd1Uj8HZ5Gq0a0VrXjIhp9UWdBoNiGTtrA8pZY=}</password>
+  <configuration>
+    <basicAuthScope>
+      <host>ANY </host>
+      <port>ANY </port>
+      <realm>OAM 11g </realm>
+    </basicAuthScope>
+    <httpConfiguration>
+      <all>
+      <params>
+        <property>
+          <name>http.protocol.allow-circular-redirects </name>
+          <value>%b,true </value>
+        </property>
+      </params>
+      </all>
+    </httpConfiguration>
+  </configuration>
+  </server>
+  </servers>
+  <repositories>
+  <repository>
+    <id>maven.oracle.com</id>
+    <releases>
+      <enabled>true</enabled>
+    </releases>
+    <snapshots>
+      <enabled>false</enabled>
+    </snapshots>
+    <url>https://maven.oracle.com</url>
+    <layout>default</layout>
+  </repository>
+</repositories>
+<pluginRepositories>
+  <pluginRepository>
+    <id>maven.oracle.com</id>
+    <url>https://maven.oracle.com</url>
+  </pluginRepository>
+</pluginRepositories>
+</settings>

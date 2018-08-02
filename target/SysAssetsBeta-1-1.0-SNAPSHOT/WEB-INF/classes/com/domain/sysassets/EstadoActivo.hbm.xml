@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.EstadoActivo" table="ESTADO_ACTIVO" schema="ACTIVOS" optimistic-lock="version">
+        <id name="estado" type="string">
+            <column name="ESTADO" length="5" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.Depreciacion" table="DEPRECIACION" schema="ACTIVOS" optimistic-lock="version">
+        <composite-id name="id" class="com.domain.sysassets.DepreciacionId">
+            <key-property name="codCia" type="string">
+                <column name="COD_CIA" length="2" />
+            </key-property>
+            <key-property name="codActivo" type="long">
+                <column name="COD_ACTIVO" precision="10" scale="0" />
+            </key-property>
+            <key-property name="numDepreciacion" type="int">
+                <column name="NUM_DEPRECIACION" precision="5" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="activosFijos" class="com.domain.sysassets.ActivosFijos" update="false" insert="false" fetch="select">
+            <column name="COD_CIA" length="2" not-null="true" />
+            <column name="COD_ACTIVO" precision="10" scale="0" not-null="true" />
+        </many-to-one>
+        <property name="fechaDepreciacion" type="date">
+            <column name="FECHA_DEPRECIACION" length="7" />
+        </property>
+        <property name="anoFiscal" type="java.lang.Short">
+            <column name="ANO_FISCAL" precision="4" scale="0" />
+        </property>
+        <property name="perProceso" type="java.lang.Byte">
+            <column name="PER_PROCESO" precision="2" scale="0" />
+        </property>
+        <property name="numDocto" type="string">
+            <column name="NUM_DOCTO" length="25" not-null="true" />
+        </property>
+        <property name="montoDepreciacion" type="big_decimal">
+            <column name="MONTO_DEPRECIACION" precision="14" />
+        </property>
+        <property name="observaciones" type="string">
+            <column name="OBSERVACIONES" length="500" />
+        </property>
+    </class>
+</hibernate-mapping>

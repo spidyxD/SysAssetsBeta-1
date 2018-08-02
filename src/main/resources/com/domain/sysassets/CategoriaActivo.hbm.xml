@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.CategoriaActivo" table="CATEGORIA_ACTIVO" schema="ACTIVOS" optimistic-lock="version">
+        <id name="categoria" type="string">
+            <column name="CATEGORIA" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="100" />
+        </property>
+        <property name="ctaGasto" type="string">
+            <column name="CTA_GASTO" length="25" />
+        </property>
+        <property name="ctaDepreciacion" type="string">
+            <column name="CTA_DEPRECIACION" length="25" />
+        </property>
+        <set name="tipoActivos" table="TIPO_ACTIVO" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="CATEGORIA" length="15" not-null="true" />
+            </key>
+            <one-to-many class="com.domain.sysassets.TipoActivo" />
+        </set>
+    </class>
+</hibernate-mapping>

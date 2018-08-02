@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.Localizacion" table="LOCALIZACION" schema="ACTIVOS" optimistic-lock="version">
+        <id name="codLocalizacion" type="string">
+            <column name="COD_LOCALIZACION" length="15" />
+            <generator class="assigned" />
+        </id>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="50" />
+        </property>
+        <set name="activosFijoses" table="ACTIVOS_FIJOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COD_LOCALIZACION" length="15" />
+            </key>
+            <one-to-many class="com.domain.sysassets.ActivosFijos" />
+        </set>
+    </class>
+</hibernate-mapping>

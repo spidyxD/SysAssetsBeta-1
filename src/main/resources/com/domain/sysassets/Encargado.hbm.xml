@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.Encargado" table="ENCARGADO" schema="ACTIVOS" optimistic-lock="version">
+        <composite-id name="id" class="com.domain.sysassets.EncargadoId">
+            <key-property name="codCia" type="string">
+                <column name="COD_CIA" length="2" />
+            </key-property>
+            <key-property name="idEncargado" type="string">
+                <column name="ID_ENCARGADO" length="15" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="departamento" class="com.domain.sysassets.Departamento" update="false" insert="false" fetch="select">
+            <column name="COD_CIA" length="2" not-null="true" />
+            <column name="COD_DEPAR" length="20" />
+        </many-to-one>
+        <property name="nombre" type="string">
+            <column name="NOMBRE" length="50" />
+        </property>
+        <set name="activosFijoses" table="ACTIVOS_FIJOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COD_CIA" length="2" not-null="true" />
+                <column name="ID_ENCARGADO" length="15" />
+            </key>
+            <one-to-many class="com.domain.sysassets.ActivosFijos" />
+        </set>
+    </class>
+</hibernate-mapping>

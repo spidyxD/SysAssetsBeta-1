@@ -1,0 +1,136 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 01/08/2018 09:51:26 PM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="com.domain.sysassets.ActivosFijos" table="ACTIVOS_FIJOS" schema="ACTIVOS" optimistic-lock="version">
+        <composite-id name="id" class="com.domain.sysassets.ActivosFijosId">
+            <key-property name="codCia" type="string">
+                <column name="COD_CIA" length="2" />
+            </key-property>
+            <key-property name="codActivo" type="long">
+                <column name="COD_ACTIVO" precision="10" scale="0" />
+            </key-property>
+        </composite-id>
+        <many-to-one name="localizacion" class="com.domain.sysassets.Localizacion" fetch="select">
+            <column name="COD_LOCALIZACION" length="15" />
+        </many-to-one>
+        <many-to-one name="encargado" class="com.domain.sysassets.Encargado" update="false" insert="false" fetch="select">
+            <column name="COD_CIA" length="2" not-null="true" />
+            <column name="ID_ENCARGADO" length="15" />
+        </many-to-one>
+        <many-to-one name="departamento" class="com.domain.sysassets.Departamento" update="false" insert="false" fetch="select">
+            <column name="COD_CIA" length="2" not-null="true" />
+            <column name="COD_DEPAR" length="20" />
+        </many-to-one>
+        <property name="tipActivo" type="string">
+            <column name="TIP_ACTIVO" length="15" />
+        </property>
+        <property name="descripcion" type="string">
+            <column name="DESCRIPCION" length="200" />
+        </property>
+        <property name="ubicacion" type="string">
+            <column name="UBICACION" length="60" />
+        </property>
+        <property name="estado" type="string">
+            <column name="ESTADO" length="2" not-null="true" />
+        </property>
+        <property name="numOrden" type="string">
+            <column name="NUM_ORDEN" length="35" />
+        </property>
+        <property name="fechaAdq" type="date">
+            <column name="FECHA_ADQ" length="7" />
+        </property>
+        <property name="montoCompra" type="big_decimal">
+            <column name="MONTO_COMPRA" precision="14" />
+        </property>
+        <property name="codCta" type="string">
+            <column name="COD_CTA" length="25" />
+        </property>
+        <property name="placaFisica" type="string">
+            <column name="PLACA_FISICA" length="25" />
+        </property>
+        <property name="vidaUtil" type="java.lang.Integer">
+            <column name="VIDA_UTIL" precision="5" scale="0" />
+        </property>
+        <property name="valorActual" type="big_decimal">
+            <column name="VALOR_ACTUAL" precision="14" />
+        </property>
+        <property name="depreciacionAcumulada" type="big_decimal">
+            <column name="DEPRECIACION_ACUMULADA" precision="14" />
+        </property>
+        <property name="modelo" type="string">
+            <column name="MODELO" length="50" />
+        </property>
+        <property name="serie" type="string">
+            <column name="SERIE" length="50" />
+        </property>
+        <property name="mejoras" type="big_decimal">
+            <column name="MEJORAS" precision="12" />
+        </property>
+        <property name="indActivo" type="string">
+            <column name="IND_ACTIVO" length="1" />
+        </property>
+        <property name="revaluacion" type="big_decimal">
+            <column name="REVALUACION" precision="14" />
+        </property>
+        <property name="numDepreciaciones" type="java.lang.Short">
+            <column name="NUM_DEPRECIACIONES" precision="4" scale="0" />
+        </property>
+        <property name="valorRescate" type="big_decimal">
+            <column name="VALOR_RESCATE" precision="14" />
+        </property>
+        <property name="indPlaca" type="string">
+            <column name="IND_PLACA" length="1" />
+        </property>
+        <property name="marca" type="string">
+            <column name="MARCA" length="25" />
+        </property>
+        <property name="caracteristicas" type="string">
+            <column name="CARACTERISTICAS" length="500" />
+        </property>
+        <property name="numFactura" type="string">
+            <column name="NUM_FACTURA" length="20" />
+        </property>
+        <property name="numCheque" type="string">
+            <column name="NUM_CHEQUE" length="30" />
+        </property>
+        <property name="activoContable" type="string">
+            <column name="ACTIVO_CONTABLE" length="1" />
+        </property>
+        <property name="fechaIngreso" type="date">
+            <column name="FECHA_INGRESO" length="7" />
+        </property>
+        <property name="registradox" type="string">
+            <column name="REGISTRADOX" length="40" />
+        </property>
+        <property name="foto" type="string">
+            <column name="FOTO" length="200" />
+        </property>
+        <property name="cajaChica" type="java.lang.Long">
+            <column name="CAJA_CHICA" precision="10" scale="0" />
+        </property>
+        <set name="mejorases" table="MEJORAS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COD_CIA" length="2" not-null="true" />
+                <column name="COD_ACTIVO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.domain.sysassets.Mejoras" />
+        </set>
+        <one-to-one name="retiro" class="com.domain.sysassets.Retiro"></one-to-one>
+        <set name="trasladoses" table="TRASLADOS" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COD_CIA" length="2" not-null="true" />
+                <column name="COD_ACTIVO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.domain.sysassets.Traslados" />
+        </set>
+        <set name="depreciacions" table="DEPRECIACION" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="COD_CIA" length="2" not-null="true" />
+                <column name="COD_ACTIVO" precision="10" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="com.domain.sysassets.Depreciacion" />
+        </set>
+    </class>
+</hibernate-mapping>
